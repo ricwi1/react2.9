@@ -14,7 +14,7 @@ function Footer () {
     return(
         <div className="footer">
             <TodoCount />
-            <div className="filers">
+            <div className="filters">
                 <FilerButton name="All" />
                 <FilerButton name="Active" />
                 <FilerButton name="Comleted" />
