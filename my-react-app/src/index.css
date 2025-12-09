@@ -6,7 +6,6 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  line-height: 1.5;
   color-scheme: light dark;
   text-align: center;
 }
@@ -89,6 +88,10 @@ h1 {
   padding: 0;
   list-style: none;
 }
+.created{
+  font-size: 13px;
+  color:gray;
+}
 .task{
   position: relative;
   font-size: 24px;
@@ -105,10 +108,11 @@ h1 {
 .task .toggle {
   text-align: center;
   width: 40px;
-  height: auto;
+  height: 40px;
   position: absolute;
   top: 0;
   bottom: 0;
+  left: 0;
   margin: auto 0;
   border: none;
   appearance: none;
@@ -141,7 +145,7 @@ h1 {
   font-weight: 400;
   color: #4d4d4d;
 }
-.todo-list:first-child .description{
+.todo-list .task:first-child .description{
   color: #cdcdcd;
   text-decoration: line-through;
 }
