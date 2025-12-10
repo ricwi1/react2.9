@@ -8,7 +8,7 @@ const NewTaskForm = ({ className, placeholder}) => {
 
 function Header() {
     return (
-        <header class="header">
+        <header className="header">
             <Title />
             <NewTaskForm 
                 className="new-todo" 
@@ -16,7 +16,7 @@ function Header() {
                 autoFocus
             />
         </header>
-    )
+    );
 }
 
 export default Header

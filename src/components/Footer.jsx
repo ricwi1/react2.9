@@ -1,26 +1,38 @@
+import Filters from "./FooterFilters";
+
 const TodoCount = () => { 
     return <span className="todo-count">1 items left</span>
-};
-
-const FilerButton = (prop) => {
-    return <button className={prop.name}>{prop.name}</button>
 };
 
 const ClearButton = () => {
     return <button className="clear-completed">Clear completed</button>
 };
 
+const filterBtnsDates =[
+    {   
+        id:1,
+        status: "selected",
+        name: "All"
+    },
+    {
+        id:2,
+        status: "none",
+        name: "Active"
+    },
+    {
+        id:3,
+        status: "none",
+        name: "Completed"
+    }
+];
+
 function Footer () {
     return(
-        <div className="footer">
+        <footer className="footer">
             <TodoCount />
-            <div className="filters">
-                <FilerButton name="All" />
-                <FilerButton name="Active" />
-                <FilerButton name="Comleted" />
-            </div>
+            <Filters btnsDates={filterBtnsDates}/>
             <ClearButton />
-        </div>
+        </footer>
     );
 }
 

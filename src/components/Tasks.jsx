@@ -1,38 +1,23 @@
-import { formatDistanceToNow } from 'date-fns'
-import { ko } from 'date-fns/locale'
+import { formatDistanceToNow } from "date-fns"
 
-function TaskForm({ className, placeholder}) {
-    return <input className={className} placeholder ={placeholder} />
-}
-
-function Task(props) {
+function Task({ created, status, description }) {
     
-    const result = formatDistanceToNow(new Date(props.date), { addSuffix: true });
-    
+    const date = created ? new Date(created) : new Date();
+  const result = isNaN(date) ? "Invalid date" : formatDistanceToNow(date, { addSuffix: true });
+        
     return (
-        <div className="task">
-            <input className="toggle" type="checkbox" />
-            <label>
-              <span className="description">{props.text}</span>
-              <span className="created">{result}</span>
-            </label>
-            <button className="icon icon-edit"></button>
-            <button className="icon icon-destroy"></button>
-        </div>
-    );
-}
-
-function TaskList() {
-    return(
-        <div className="taskList">
-            <TaskForm className="NewTaskForm" placeholder ="What needs to be done?" />
-            <div className ="todo-list">
-                <Task text="Completed task" date={new Date()} />
-                <TaskForm className="EditingTask" placeholder="Editing task" />
-                <Task text="Active task" date={new Date()} />
+        <li className={status}>
+            <div className="view">
+                <input className="toggle" type="checkbox" />
+                <label>
+                    <span className="description">{description}</span>
+                    <span className="created">{result}</span>
+                </label>
+                <button className="icon icon-edit"></button>
+                <button className="icon icon-destroy"></button>
             </div>
-        </div>
+        </li>
     );
 }
 
-export default TaskList
+export default Task
