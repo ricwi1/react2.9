@@ -3,7 +3,7 @@ import { formatDistanceToNow } from "date-fns"
 function Task({ created, status, description }) {
     
     const date = created ? new Date(created) : new Date();
-  const result = isNaN(date) ? "Invalid date" : formatDistanceToNow(date, { addSuffix: true });
+    const result = isNaN(date) ? "Invalid date" : formatDistanceToNow(date, { addSuffix: true });
         
     return (
         <li className={status}>

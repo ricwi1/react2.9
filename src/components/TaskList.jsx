@@ -2,6 +2,7 @@ import Task from "./Tasks";
 
 
 function TaskList({tasks}) {
+     console.log(tasks);
      return( 
         <ul className="todo-list"> 
             {tasks.map((el) => ( 

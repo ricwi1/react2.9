@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Header from './components/Header'
-import TaskList from './components/Tasks'
+import TaskList from './components/TaskList'
 import Footer from './components/Footer'
 import './App.css'
 
@@ -28,10 +28,10 @@ const tasksDates = [
 
 function App() {
   const [count, setCount] = useState(0)
-
+  
   return (
     <section className="todoapp">
-      <Header />
+        <Header />
       <section className="main">
         <TaskList tasks ={tasksDates}/>
         <Footer />
