@@ -27,21 +27,35 @@ const tasksDates = [
 
 
 function App() {
+
   const [tasks, setTasks] = useState(tasksDates);
+
+  const addTask = (newTaskDescription) => {
+    setTasks(tasks => [
+    ...tasks,
+    {
+      id: Date.now(),
+      description: newTaskDescription,
+      status: "active",
+      created: new Date(),
+    }
+  ]);
+  };
   
   const toggleStatus = (id) => {
-    setTasks(tasks =>
-      tasks.map(task =>
-        task.id === id
-          ? {
-              ...task,
-              status:
-              task.status === "completed" ? "active" : "completed"
-            }
-            : task
-        )
-    );
+     setTasks(tasks =>
+        tasks.map(task =>
+          task.id === id
+            ? {
+                ...task,
+                status:
+                task.status === "completed" ? "active" : "completed"
+              }
+              : task
+          )
+      );
   };
+    
   const editTask = (id) => {
     setTasks(tasks =>
       tasks.map(task =>
@@ -72,7 +86,7 @@ function App() {
   
   return (
     <section className="todoapp">
-        <Header />
+        <Header addTask = {addTask}/>
       <section className="main">
         <TaskList 
           tasks ={tasks}
