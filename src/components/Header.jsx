@@ -8,15 +8,20 @@ const Title = () => {
 function NewTaskForm ({ className, placeholder, addTask}) {
     const [value, setValue] = useState("");
     const onKeyDown = (e) => {
-      if (e.key === "Enter") {
-      const newTaskDescription = value.trim();
-      addTask(newTaskDescription);
-    }
-  };
+        if (e.key === "Enter") {
+            const newTaskDescription = value.trim();
+
+            if (newTaskDescription) {
+                    addTask(newTaskDescription);
+                    setValue("");
+                }
+        }
+     };
     return (
         <input 
             className={className} 
             placeholder ={placeholder} 
+            value={value}
             onChange ={(e) => setValue(e.target.value)}
             onKeyDown={onKeyDown}
         />
