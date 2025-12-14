@@ -27,13 +27,46 @@ const tasksDates = [
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tasks, setTasks] = useState(tasksDates);
+  
+  const toggleStatus = (id) => {
+    setTasks(tasks =>
+      tasks.map(task =>
+        task.id === id
+          ? {
+              ...task,
+              status:
+              task.status === "completed" ? "active" : "completed"
+            }
+            : task
+        )
+    );
+  };
+  const editTask = (id) => {
+    setTasks(tasks =>
+      tasks.map(task =>
+        task.id === id
+          ? { ...task, status: 'editing' }
+          : task
+      )
+    );
+  };
+  const deleteTask = (id) => {
+    setTasks(tasks =>
+      tasks.filter(task => task.id !== id)
+    );
+  };
   
   return (
     <section className="todoapp">
         <Header />
       <section className="main">
-        <TaskList tasks ={tasksDates}/>
+        <TaskList 
+          tasks ={tasks}
+          toggleStatus={toggleStatus}
+          editTask={editTask}
+          deleteTask={deleteTask}
+        />
         <Footer />
       </section>
     </section>
