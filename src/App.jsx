@@ -56,6 +56,19 @@ function App() {
       tasks.filter(task => task.id !== id)
     );
   };
+  const saveTask = (id,newDescription) => {
+    setTasks(tasks => 
+      tasks.map(task =>
+        task.id === id 
+        ? {
+          ...task,
+          description: newDescription,
+          status: "active"
+        }
+        : task
+      )
+    );
+  };
   
   return (
     <section className="todoapp">
@@ -66,6 +79,7 @@ function App() {
           toggleStatus={toggleStatus}
           editTask={editTask}
           deleteTask={deleteTask}
+          saveTask={saveTask}
         />
         <Footer />
       </section>

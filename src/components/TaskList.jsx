@@ -1,4 +1,5 @@
 import { formatDistanceToNow } from "date-fns"
+import { useState } from "react";
 
 function Task({
   id,
@@ -8,13 +9,22 @@ function Task({
   toggleStatus,
   editTask,
   deleteTask,
+  saveTask
 }) {
+
   const date = created ? new Date(created) : new Date();
   const result = isNaN(date)
-    ? "Invalid date"
-    : formatDistanceToNow(date, { addSuffix: true });
+      ? "Invalid date"
+      : formatDistanceToNow(date, { addSuffix: true });
 
   const isEditing = status === "editing";
+  const [value, setValue] = useState(description);
+  const onKeyDown = (e) => {
+      if (e.key === "Enter") {
+      const newDescription = value.trim();
+      saveTask(id, newDescription);
+    }
+  };
 
   return (
     <li className={status}>
@@ -46,14 +56,16 @@ function Task({
         <input
           type="text"
           className="edit"
-          defaultValue={description}
+          value = {value}
+          onChange ={(e) => setValue(e.target.value)}
+          onKeyDown={onKeyDown}
         />
       )}
     </li>
   );
 }
 
-function TaskList({ tasks, toggleStatus, editTask, deleteTask }) {
+function TaskList({ tasks, toggleStatus, editTask, deleteTask, saveTask }) {
 
   return (
     <ul className="todo-list">
@@ -64,6 +76,7 @@ function TaskList({ tasks, toggleStatus, editTask, deleteTask }) {
           toggleStatus={toggleStatus}
           editTask={editTask}
           deleteTask={deleteTask}
+          saveTask={saveTask}
         />
       ))}
     </ul>
