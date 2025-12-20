@@ -8,11 +8,14 @@ const ClearButton = () => {
     return <button className="clear-completed">Clear completed</button>
 };
 
-function Footer () {
+function Footer ({activeFilter, changeFilter}) {
     return(
         <footer className="footer">
             <TodoCount />
-            <Filters />
+            <Filters 
+                activeFilter={activeFilter}
+                changeFilter = {changeFilter}
+            />
             <ClearButton />
         </footer>
     );

@@ -1,6 +1,7 @@
 import { formatDistanceToNow } from "date-fns"
 import { useState } from "react";
 
+
 function Task({
   id,
   created,
@@ -67,9 +68,14 @@ function Task({
 
 function TaskList({ tasks, ...props}) {
 
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+
   return (
     <ul className="todo-list">
       {tasks.map(el => (
+
         <Task
           key={el.id}
           {...el}
