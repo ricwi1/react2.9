@@ -4,11 +4,18 @@ const TodoCount = () => {
     return <span className="todo-count">1 items left</span>
 };
 
-const ClearButton = () => {
-    return <button className="clear-completed">Clear completed</button>
+const ClearButton = ({ onClick }) => {
+    return <button 
+                className="clear-completed"
+                onClick={onClick}
+            >
+                Clear completed
+            </button>
 };
 
-function Footer ({activeFilter, changeFilter}) {
+function Footer ({activeFilter, changeFilter, clearCompleted}) {
+    console.log(clearCompleted);
+
     return(
         <footer className="footer">
             <TodoCount />
@@ -16,7 +23,7 @@ function Footer ({activeFilter, changeFilter}) {
                 activeFilter={activeFilter}
                 changeFilter = {changeFilter}
             />
-            <ClearButton />
+            <ClearButton onClick = {clearCompleted} />
         </footer>
     );
 }
