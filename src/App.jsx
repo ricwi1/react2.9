@@ -30,6 +30,9 @@ function App() {
 
   const [tasks, setTasks] = useState(tasksDates);
   const [activeFilter, setActiveFilter] = useState("All");
+  const activeCount = tasks.filter(
+    task => task.status === "active"  
+  ).length;
   
   const addTask = (newTaskDescription) => {
     setTasks(tasks => [
@@ -98,7 +101,6 @@ function App() {
     );
   };
 
-
     return (
       <section className="todoapp">
         <Header addTask = {addTask}/>
@@ -111,6 +113,7 @@ function App() {
           saveTask={saveTask}
         />
         <Footer 
+          activeCount = {activeCount}
           activeFilter={activeFilter}
           changeFilter = {setActiveFilter}
           clearCompleted = {clearCompleted}

@@ -1,7 +1,7 @@
 import Filters from "./FooterFilters";
 
-const TodoCount = () => { 
-    return <span className="todo-count">1 items left</span>
+const TodoCount = ({activeCount}) => { 
+    return <span className="todo-count">{activeCount} items left</span>
 };
 
 const ClearButton = ({ onClick }) => {
@@ -13,12 +13,11 @@ const ClearButton = ({ onClick }) => {
             </button>
 };
 
-function Footer ({activeFilter, changeFilter, clearCompleted}) {
-    console.log(clearCompleted);
-
+function Footer ({activeCount, activeFilter, changeFilter, clearCompleted}) {
+console.log(typeof activeCount, activeCount);
     return(
         <footer className="footer">
-            <TodoCount />
+            <TodoCount activeCount = {activeCount} />
             <Filters 
                 activeFilter={activeFilter}
                 changeFilter = {changeFilter}
