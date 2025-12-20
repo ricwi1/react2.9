@@ -65,7 +65,7 @@ function Task({
   );
 }
 
-function TaskList({ tasks, toggleStatus, editTask, deleteTask, saveTask }) {
+function TaskList({ tasks, ...props}) {
 
   return (
     <ul className="todo-list">
@@ -73,10 +73,7 @@ function TaskList({ tasks, toggleStatus, editTask, deleteTask, saveTask }) {
         <Task
           key={el.id}
           {...el}
-          toggleStatus={toggleStatus}
-          editTask={editTask}
-          deleteTask={deleteTask}
-          saveTask={saveTask}
+          {...props}
         />
       ))}
     </ul>

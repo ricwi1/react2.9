@@ -8,29 +8,11 @@ const ClearButton = () => {
     return <button className="clear-completed">Clear completed</button>
 };
 
-const filterBtnsDates =[
-    {   
-        id:1,
-        status: "selected",
-        name: "All"
-    },
-    {
-        id:2,
-        status: "none",
-        name: "Active"
-    },
-    {
-        id:3,
-        status: "none",
-        name: "Completed"
-    }
-];
-
 function Footer () {
     return(
         <footer className="footer">
             <TodoCount />
-            <Filters btnsDates={filterBtnsDates}/>
+            <Filters />
             <ClearButton />
         </footer>
     );

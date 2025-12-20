@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Header from './components/Header'
 import TaskList from './components/TaskList'
 import Footer from './components/Footer'
-import './App.css'
+
 
 const tasksDates = [
     {
@@ -34,7 +34,7 @@ function App() {
     setTasks(tasks => [
     ...tasks,
     {
-      id: Date.now(),
+      id: tasks.length +1,
       description: newTaskDescription,
       status: "active",
       created: new Date(),
