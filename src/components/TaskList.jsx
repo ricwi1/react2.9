@@ -1,5 +1,6 @@
 import { formatDistanceToNow } from "date-fns"
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 
 function Task({
@@ -66,6 +67,21 @@ function Task({
   );
 }
 
+Task.propTypes = {
+  id: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  status: PropTypes.oneOf(["active", "completed", "editing"]).isRequired,
+  created: PropTypes.oneOfType([
+    PropTypes.instanceOf(Date),
+    PropTypes.string,
+  ]).isRequired,
+
+  toggleStatus: PropTypes.func.isRequired,
+  editTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  saveTask: PropTypes.func.isRequired,
+};
+
 function TaskList({ tasks, ...props}) {
 
   const [isOpen, setIsOpen] = useState(false);
@@ -85,4 +101,21 @@ function TaskList({ tasks, ...props}) {
     </ul>
   );
 }
+
+TaskList.propTypes = {
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      status: PropTypes.oneOf(["active", "completed", "editing"]).isRequired,
+      created: PropTypes.instanceOf(Date).isRequired,
+    })
+  ).isRequired,
+
+  toggleStatus: PropTypes.func.isRequired,
+  editTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  saveTask: PropTypes.func.isRequired,
+};
+
 export default TaskList

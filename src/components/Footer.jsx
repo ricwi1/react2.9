@@ -1,7 +1,12 @@
 import Filters from "./FooterFilters";
+import PropTypes from "prop-types";
 
 const TodoCount = ({activeCount}) => { 
     return <span className="todo-count">{activeCount} items left</span>
+};
+
+TodoCount.propTypes = {
+  activeCount: PropTypes.number.isRequired,
 };
 
 const ClearButton = ({ onClick }) => {
@@ -13,7 +18,11 @@ const ClearButton = ({ onClick }) => {
             </button>
 };
 
-function Footer ({activeCount, activeFilter, changeFilter, clearCompleted}) {
+ClearButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
+
+function Footer ({activeFilter = "All", activeCount, changeFilter, clearCompleted}) {
 console.log(typeof activeCount, activeCount);
     return(
         <footer className="footer">
@@ -26,5 +35,12 @@ console.log(typeof activeCount, activeCount);
         </footer>
     );
 }
+
+Footer.propTypes = {
+  activeCount: PropTypes.number.isRequired,
+  activeFilter: PropTypes.oneOf(["All", "Active", "Completed"]),
+  changeFilter: PropTypes.func.isRequired,
+  clearCompleted: PropTypes.func.isRequired,
+};
 
 export default Footer

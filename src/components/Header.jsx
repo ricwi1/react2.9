@@ -1,11 +1,16 @@
 import { useState } from 'react'
-import { formatDistanceToNow } from "date-fns"
+import PropTypes from "prop-types";
 
 const Title = () => { 
     return <h1>todos</h1>;
 };
 
-function NewTaskForm ({ className, placeholder, addTask}) {
+function NewTaskForm ({ 
+    className = "new-todo",
+    placeholder = "What needs to be done?",
+    addTask,
+    autoFocus = false
+}) {
     const [value, setValue] = useState("");
     const onKeyDown = (e) => {
         if (e.key === "Enter") {
@@ -22,24 +27,35 @@ function NewTaskForm ({ className, placeholder, addTask}) {
             className={className} 
             placeholder ={placeholder} 
             value={value}
+            autoFocus={autoFocus}
             onChange ={(e) => setValue(e.target.value)}
             onKeyDown={onKeyDown}
         />
     );
 };
 
+NewTaskForm.propTypes = {
+  className: PropTypes.string,
+  placeholder: PropTypes.string,
+  addTask: PropTypes.func.isRequired,
+  autoFocus: PropTypes.bool,
+};
+
+
 function Header({addTask}) {
     return (
         <header className="header">
             <Title />
             <NewTaskForm 
-                className="new-todo" 
-                placeholder ="What needs to be done?"
                 addTask={addTask} 
                 autoFocus
             />
         </header>
     );
 }
+
+Header.propTypes = {
+  addTask: PropTypes.func.isRequired,
+};
 
 export default Header

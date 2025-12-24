@@ -30,21 +30,21 @@ function App() {
 
   const [tasks, setTasks] = useState(tasksDates);
   const [activeFilter, setActiveFilter] = useState("All");
+  
   const activeCount = tasks.filter(
     task => task.status === "active"  
   ).length;
   
   const addTask = (newTaskDescription) => {
     setTasks(tasks => [
-    ...tasks,
-    {
-      id: tasks.length +1,
-      description: newTaskDescription,
-      status: "active",
-      created: new Date(),
-    }
-    
-  ]);
+      ...tasks,
+      {
+        id: tasks.length +1,
+        description: newTaskDescription,
+        status: "active",
+        created: new Date(),
+      }
+    ]);
   };
   
   const toggleStatus = (id) => {
